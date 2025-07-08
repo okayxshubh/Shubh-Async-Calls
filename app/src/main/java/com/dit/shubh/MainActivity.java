@@ -19,7 +19,11 @@ import com.dit.shubh.ShubhNetworkCallKit.model.ShubhSuccessResponse;
 import com.dit.shubh.ShubhNetworkCallKit.model.ShubhUploadObject;
 import com.dit.shubh.ShubhNetworkCallKit.network.ShubhHttpManager;
 import com.dit.shubh.ShubhNetworkCallKit.network.ShubhResponseWrapper;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -51,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
         tvResult.setText(a);
 
         btnFetch.setOnClickListener(view -> {
-
             ShubhNetworkUtil.makeApiCall(
                     this,
                     HttpTaskType.GET,
@@ -59,22 +62,32 @@ public class MainActivity extends AppCompatActivity {
                     "/master-data?masterName=gender&status=true",
                     null,
                     null,
-
                     new ShubhApiCallback() {
                         @Override
                         public void onSuccess(ShubhSuccessResponse response) {
-                            tvResult.setText("Response: " + response.toString());
+                            tvResult.setText("Raw: " + response.getResponse() );
+
+                            // Parse JSON into list
+                            try {
+                                Type listType = new TypeToken<List<GenderPojo>>() {}.getType();
+                                List<GenderPojo> genderList = new Gson().fromJson(response.getResponse(), listType);
+
+                                for (GenderPojo item : genderList) {
+                                    Log.e("GENDER", item.toString());
+                                }
+
+                            } catch (Exception e) {
+                                Log.e("PARSE_ERROR", e.getMessage());
+                            }
                         }
 
                         @Override
                         public void onFailure(String errorMessage, ShubhOfflineObject fullResponse) {
-                            CD.showDialog(MainActivity.this, errorMessage);
+                            Log.e("API_ERROR", errorMessage);
                             Log.e("API_RAW", fullResponse != null ? fullResponse.getResponse() : "null");
-                            Log.e("API_PARSED", fullResponse != null ? fullResponse.toString() : "null");
                         }
                     }
             );
-
         });
 
 
