@@ -26,9 +26,9 @@ public class ShubhNetworkUtil {
         }
 
         // 🔄 Show loader
-        Handler handler = new Handler(Looper.getMainLooper());
-        ProgressDialog progressDialog = new android.app.ProgressDialog(context);
-        progressDialog.setMessage("Please wait...");
+        Handler handler = new Handler(Looper.getMainLooper()); // Handler Goes Back to Main UI
+        ProgressDialog progressDialog = new ProgressDialog(context);
+        progressDialog.setMessage("Please wait..");
         progressDialog.setCancelable(false);
         progressDialog.show();
 
@@ -64,12 +64,14 @@ public class ShubhNetworkUtil {
                             if (parsed != null) callback.onSuccess(parsed);
                             else callback.onFailure("Success but response body is empty", raw);
                             break;
+
                         case "400": callback.onFailure("Bad Request", raw); break;
                         case "401": callback.onFailure("Unauthorized: Login again", raw); break;
                         case "403": callback.onFailure("Forbidden: Access denied", raw); break;
                         case "404": callback.onFailure("Not Found: Invalid endpoint", raw); break;
                         case "500": callback.onFailure("Server Error: Try again later", raw); break;
                         case "503": callback.onFailure("Service Unavailable: Server busy", raw); break;
+
                         default: callback.onFailure("Unexpected status (" + code + "): " + rawMessage, raw); break;
                     }
                 });

@@ -304,7 +304,6 @@ public class ShubhHttpManager {
 
 
 
-
 //    HELPER METHODS ##################################################################
 
 
@@ -383,6 +382,151 @@ public class ShubhHttpManager {
     }
 
 
+
+
+//  EXPERIMENTAL SSL METHODS    #################################################################
+
+//    public ShubhOfflineObject ShubhGetData(ShubhUploadObject data) throws IOException {
+//        BufferedReader reader = null;
+//        HttpURLConnection connection = null;
+//        ShubhOfflineObject response = null;
+//
+//        try {
+//            StringBuilder sbUrl = new StringBuilder();
+//            sbUrl.append(data.getUrl()).append(data.getMethodName());
+//            if (data.getParam() != null) sbUrl.append(data.getParam());
+//
+//            String finalUrl = sbUrl.toString();
+//            logRequest("GET", finalUrl, "", "");
+//
+//            connection = ShubhSSLUtil.openConnection(finalUrl, "GET");
+//            int responseCode = connection.getResponseCode();
+//
+//            InputStream inputStream = (responseCode == 200)
+//                    ? connection.getInputStream() : connection.getErrorStream();
+//
+//            StringBuilder sb = ShubhSSLUtil.readStream(inputStream);
+//            logResponse("GET", responseCode, sb.toString());
+//
+//            response = ShubhNetworkEconstants.createOfflineObject(
+//                    data.getUrl(), data.getParam(), sb.toString(), String.valueOf(responseCode), data.getMethodName());
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            int code = (connection != null) ? connection.getResponseCode() : 0;
+//            response = ShubhNetworkEconstants.createOfflineObject(
+//                    data.getUrl(), data.getParam(), e.getLocalizedMessage(), String.valueOf(code), data.getMethodName());
+//        } finally {
+//            if (reader != null) reader.close();
+//            if (connection != null) connection.disconnect();
+//        }
+//        return response;
+//    }
+
+
+//    public ShubhOfflineObject ShubhPostData(ShubhUploadObject data) throws IOException {
+//        HttpURLConnection conn = null;
+//        BufferedReader reader = null;
+//        ShubhOfflineObject response = null;
+//
+//        try {
+//            String urlStr = data.getUrl() + data.getMethodName();
+//            conn = ShubhSSLUtil.openConnection(urlStr, "POST");
+//
+//            if (data.getBody() != null)
+//                conn.getOutputStream().write(data.getBody().getBytes());
+//
+//            logRequest("POST", urlStr, "", data.getBody());
+//
+//            int responseCode = conn.getResponseCode();
+//            InputStream inputStream = (responseCode == 200) ? conn.getInputStream() : conn.getErrorStream();
+//
+//            StringBuilder sb = ShubhSSLUtil.readStream(inputStream);
+//            logResponse("POST", responseCode, sb.toString());
+//
+//            response = ShubhNetworkEconstants.createOfflineObject(
+//                    data.getUrl(), data.getParam(), sb.toString(), String.valueOf(responseCode), data.getMethodName());
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            int code = (conn != null) ? conn.getResponseCode() : 0;
+//            response = ShubhNetworkEconstants.createOfflineObject(
+//                    data.getUrl(), data.getParam(), e.getLocalizedMessage(), String.valueOf(code), data.getMethodName());
+//        } finally {
+//            if (reader != null) reader.close();
+//            if (conn != null) conn.disconnect();
+//        }
+//        return response;
+//    }
+
+
+//    public ShubhOfflineObject ShubhPutData(ShubhUploadObject data) throws IOException {
+//        HttpURLConnection conn = null;
+//        BufferedReader reader = null;
+//        ShubhOfflineObject response = null;
+//
+//        try {
+//            String urlStr = data.getUrl() + data.getMethodName();
+//            conn = ShubhSSLUtil.openConnection(urlStr, "PUT");
+//
+//            if (data.getBody() != null)
+//                conn.getOutputStream().write(data.getBody().getBytes());
+//
+//            logRequest("PUT", urlStr, "", data.getBody());
+//
+//            int responseCode = conn.getResponseCode();
+//            InputStream inputStream = (responseCode == 200) ? conn.getInputStream() : conn.getErrorStream();
+//
+//            StringBuilder sb = ShubhSSLUtil.readStream(inputStream);
+//            logResponse("PUT", responseCode, sb.toString());
+//
+//            response = ShubhNetworkEconstants.createOfflineObject(
+//                    data.getUrl(), data.getParam(), sb.toString(), String.valueOf(responseCode), data.getMethodName());
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            int code = (conn != null) ? conn.getResponseCode() : 0;
+//            response = ShubhNetworkEconstants.createOfflineObject(
+//                    data.getUrl(), data.getParam(), e.getLocalizedMessage(), String.valueOf(code), data.getMethodName());
+//        } finally {
+//            if (reader != null) reader.close();
+//            if (conn != null) conn.disconnect();
+//        }
+//        return response;
+//    }
+
+
+//    public ShubhOfflineObject ShubhDeleteData(ShubhUploadObject data) throws IOException {
+//        HttpURLConnection conn = null;
+//        BufferedReader reader = null;
+//        ShubhOfflineObject response = null;
+//
+//        try {
+//            String urlStr = data.getUrl() + data.getMethodName();
+//            conn = ShubhSSLUtil.openConnection(urlStr, "DELETE");
+//
+//            logRequest("DELETE", urlStr, "", "");
+//
+//            int responseCode = conn.getResponseCode();
+//            InputStream inputStream = (responseCode == 200) ? conn.getInputStream() : conn.getErrorStream();
+//
+//            StringBuilder sb = ShubhSSLUtil.readStream(inputStream);
+//            logResponse("DELETE", responseCode, sb.toString());
+//
+//            response = ShubhNetworkEconstants.createOfflineObject(
+//                    data.getUrl(), data.getParam(), sb.toString(), String.valueOf(responseCode), data.getMethodName());
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            int code = (conn != null) ? conn.getResponseCode() : 0;
+//            response = ShubhNetworkEconstants.createOfflineObject(
+//                    data.getUrl(), data.getParam(), e.getLocalizedMessage(), String.valueOf(code), data.getMethodName());
+//        } finally {
+//            if (reader != null) reader.close();
+//            if (conn != null) conn.disconnect();
+//        }
+//        return response;
+//    }
 
 
 }

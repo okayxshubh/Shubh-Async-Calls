@@ -1,9 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.ShubhNetworkCalls" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
+    <!-- 🌞 Base Light Theme -->
+    <style name="Base.Theme.ShubhNetworkCalls" parent="Theme.Material3.Light.NoActionBar">
+
+        <!-- 🎨 Primary Colors -->
+        <item name="colorPrimary">@color/blue500</item>
+        <item name="colorOnPrimary">@android:color/white</item>
+        <item name="colorPrimaryVariant">@color/blue700</item>
+
+        <!-- 🎨 Secondary Colors -->
+        <item name="colorSecondary">@color/amber500</item>
+        <item name="colorOnSecondary">@android:color/black</item>
+
+        <!-- 🎨 Background & Surface -->
+        <item name="colorOnBackground">@color/gray100</item>
+        <item name="colorSurface">@color/white</item>
+
+        <!-- 📱 Status Bar -->
+        <item name="android:statusBarColor">@color/blue700</item>
+
+        <!-- 🅰️ Font -->
+        <item name="android:fontFamily">@font/custom_font</item>
+
     </style>
 
+    <!-- 🔗 Main Theme -->
     <style name="Theme.ShubhNetworkCalls" parent="Base.Theme.ShubhNetworkCalls" />
+
 </resources>
